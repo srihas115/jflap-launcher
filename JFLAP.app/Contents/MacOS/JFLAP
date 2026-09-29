@@ -1,0 +1,22 @@
+#!/bin/zsh
+set -u
+
+APP_DIR="${0:A:h:h}"
+JAR_PATH="$APP_DIR/Resources/JFLAP7.1.jar"
+
+java_candidates=(
+  "$(/usr/libexec/java_home 2>/dev/null)/bin/java"
+  "/opt/homebrew/opt/openjdk@21/bin/java"
+  "/opt/homebrew/bin/java"
+  "/usr/local/bin/java"
+  "/usr/bin/java"
+)
+
+for java_bin in "${java_candidates[@]}"; do
+  if [[ -x "$java_bin" ]]; then
+    exec "$java_bin" -jar "$JAR_PATH"
+  fi
+done
+
+osascript -e 'display alert "Java not found" message "Install Java, then reopen JFLAP." as critical'
+exit 1
