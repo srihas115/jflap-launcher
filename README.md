@@ -2,7 +2,8 @@
 
 This repository packages JFLAP 7.1 as a macOS application. The app bundle
 contains its own copy of `JFLAP7.1.jar` and launches it with an installed Java
-runtime.
+runtime. The JFLAP JAR included here was taken from
+https://www.jflap.org/jflaptmp/.
 
 ## Requirements
 
